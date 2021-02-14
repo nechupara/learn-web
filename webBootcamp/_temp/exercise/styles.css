@@ -1,0 +1,10 @@
+a {
+  display: block;
+  padding: 30px;
+  background: red;
+  color: red;
+  width: 30%;
+}
+span {
+  display: block;
+}
