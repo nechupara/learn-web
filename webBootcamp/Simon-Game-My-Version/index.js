@@ -1,4 +1,4 @@
 'use strict'
 // alert('hiii')
 
-$('.button').on('click', function () {alert('oh yeah')});
+$('.sqr-button').on('click', sqrPressed);

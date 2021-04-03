@@ -51,6 +51,7 @@ h1 {
 }
 .green {
   background-color: green;
+
 }
 
 .red {
@@ -65,3 +66,7 @@ h1 {
   background-color: blue;
 }
 
+.pressed {
+  box-shadow:0 0 30px rgb(226, 211, 211);
+  background-color: #808080;
+}
