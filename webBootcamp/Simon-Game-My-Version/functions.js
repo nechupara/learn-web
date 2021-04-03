@@ -30,7 +30,7 @@ const animateNextColor = color => {
     $(nameOfClass).addClass('next-level');
     setTimeout(function () {
         $(nameOfClass).removeClass('next-level');
-    }, 400)
+    }, 300)
 }
 
 //Animate Body when game over
