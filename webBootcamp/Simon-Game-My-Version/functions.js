@@ -1,18 +1,20 @@
 'use strict'
 
 const sqrPressed = ivent => {
-    const color = btnColor(ivent.target);
     currentIteration++;
+    if (currentIteration > sequence.length) {
+        gameOver();
+    }
+    const color = btnColor(ivent.target);
     playSound(color);
     animateSquare(color);
     if (level === 0) {
         gameOver();
     } else if (color !== sequence[currentIteration-1]) {
-        gameOver()
+        gameOver();
     } else if (currentIteration === sequence.length) {
-        setTimeout(nextLevel, 700);
+        nextLevel();
     }
-
 }
 
 
@@ -81,12 +83,16 @@ const keyPressOnStart = ivent => {
 }
 
 const nextLevel = () => {
-    level++;
-    writeToHeader('Level ' + level);
-    sequence.push(generateColor());
-    currentIteration = 0;
-    playSound(sequence[level - 1]);
-    animateNextColor(sequence[level - 1]);
+    setTimeout(function () {
+        level++;
+        writeToHeader('Level ' + level);
+        sequence.push(generateColor());
+        currentIteration = 0;
+        playSound(sequence[level - 1]);
+        animateNextColor(sequence[level - 1]); 
+    }, 700)
+    
+
 }
 
 //text to header
