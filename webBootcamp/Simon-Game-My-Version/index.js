@@ -1,1 +1,3 @@
-alert('hiii')
+'use strict'
+// alert('hiii')
+myAlert('myallllert');

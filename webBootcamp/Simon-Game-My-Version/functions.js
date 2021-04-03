@@ -1,0 +1,1 @@
+const myAlert = message => alert(message);
