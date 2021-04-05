@@ -1,21 +1,71 @@
 'use strict'
 
+// const sqrPressed = ivent => {
+//     if (functionInProcess) {
+//         console.log('ouch!!');
+//     } else {
+//         console.log(functionInProcess);
+//         functionInProcess = true;
+//         console.log(functionInProcess);
+//         currentIteration++;
+//         const color = btnColor(ivent.target);
+//         playSound(color);
+//         animateSquare(color);
+//         if (currentIteration > sequence.length) {
+//             gameOver();
+//             functionInProcess = false;
+//             console.log('currentIteration > sequence.length')
+//         } else if (level === 0) {
+//             gameOver();
+//             functionInProcess = false;
+//             console.log('level === 0');
+//         } else if (color !== sequence[currentIteration - 1]) {
+//             gameOver();
+//             functionInProcess = false;
+//             console.log('color !== sequence[currentIteration - 1]');
+//         } else if (currentIteration === sequence.length && color === sequence[currentIteration - 1]) {
+//             nextLevel();
+//             functionInProcess = false;
+//             console.log('currentIteration === sequence.length && color === sequence[currentIteration - 1]');
+//         } else if (color === sequence[currentIteration - 1]) {
+//             playSound(color);
+//             animateSquare(color);
+//             functionInProcess = false;
+//             console.log('color === sequence[currentIteration - 1]');
+//         }
+//     }
+// }
+
+
 const sqrPressed = ivent => {
+    $('.sqr-button').off('click');
     currentIteration++;
-    if (currentIteration > sequence.length) {
-        gameOver();
-    }
     const color = btnColor(ivent.target);
     playSound(color);
     animateSquare(color);
-    if (level === 0) {
+    if (currentIteration > sequence.length) {
         gameOver();
-    } else if (color !== sequence[currentIteration-1]) {
+        console.log('currentIteration > sequence.length');
+    } else if (level === 0) {
         gameOver();
-    } else if (currentIteration === sequence.length) {
+        console.log('level === 0');
+
+    } else if (color !== sequence[currentIteration - 1]) {
+        gameOver();
+        console.log('color !== sequence[currentIteration - 1]');
+    } else if (currentIteration === sequence.length && color === sequence[currentIteration - 1]) {
         nextLevel();
+        console.log('currentIteration === sequence.length && color === sequence[currentIteration - 1]');
+    } else if (color === sequence[currentIteration - 1]) {
+        playSound(color);
+        animateSquare(color);
+
+        setTimeout(function () {$('.sqr-button').on('click', sqrPressed);}, 200); //////
+        console.log('color === sequence[currentIteration - 1]');
     }
+
 }
+
 
 
 // Find square by color and animate it
@@ -82,6 +132,7 @@ const keyPressOnStart = ivent => {
     }
 }
 
+// Next level
 const nextLevel = () => {
     setTimeout(function () {
         level++;
@@ -89,9 +140,11 @@ const nextLevel = () => {
         sequence.push(generateColor());
         currentIteration = 0;
         playSound(sequence[level - 1]);
-        animateNextColor(sequence[level - 1]); 
-    }, 700)
-    
+        animateNextColor(sequence[level - 1]);
+        $('.sqr-button').on('click', sqrPressed); //////////////
+    }, 700); // was 700
+    //functionInProcess = false;
+
 
 }
 
@@ -106,4 +159,8 @@ const gameOver = () => {
     sequence = [];
     level = 0;
     currentIteration = 0;
+    //functionInProcess = false;
+    $('.sqr-button').on('click', sqrPressed); //////////////////////
 }
+
+const startButton = () => keyPressOnStart();

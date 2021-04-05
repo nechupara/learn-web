@@ -19,7 +19,12 @@ h1 {
   margin-bottom: 8%;
   font-weight: 700;
 }
-
+ button {
+   display: block;
+   width: 200px;
+   height: 50px;
+   margin: 100px auto;
+ }
 /* div {
   background-color: red;
   width: 200px;
